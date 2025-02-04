@@ -169,3 +169,48 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+
+
+
+# General ignores
+.DS_Store
+Thumbs.db
+*.log
+*.pyc
+*.pyo
+__pycache__/
+.vscode/
+.idea/
+.env
+.env.local
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Ignore Docker-related files
+*.pid
+*.db
+*.sqlite3
+docker-compose.override.yml
+
+# Backend-specific ignores
+backend/.venv/          # Ignore virtual environment
+backend/__pycache__/    # Ignore Python cache files
+backend/db.sqlite3      # Ignore SQLite database file (if applicable)
+backend/media/          # Ignore uploaded media files
+backend/staticfiles/    # Ignore collected static files
+backend/local_settings.py  # Ignore local settings
+
+# Frontend-specific ignores
+frontend/.next/         # Ignore Next.js build output
+frontend/node_modules/  # Ignore dependencies
+frontend/.env.local     # Ignore environment files
+frontend/.vercel/       # Ignore Vercel deployment files
+frontend/.yarn/
+frontend/.swc/
+frontend/.turbo/
+
+# Ignore build artifacts
+frontend/out/
