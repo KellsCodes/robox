@@ -1,0 +1,10 @@
+services:
+  app:
+    build: .
+    container_name: robox_container
+    volumes: 
+      - ./backend:/usr/src/app
+    ports:
+      - 8000:8000
+    image: app:robox
+    command: python manage.py runserver 0.0.0.0:8000
