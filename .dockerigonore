@@ -1,0 +1,7 @@
+.dockerignore
+# Python bytecode files
+*/backend/.py[cod]
+*/backend/__pycache__/
+*/backend/.so
+*/venv
+/backend/db.sqlite3
