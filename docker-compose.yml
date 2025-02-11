@@ -1,6 +1,6 @@
 services:
   app:
-    build: .
+    build: ./backend
     container_name: robox_container
     volumes: 
       - ./backend:/usr/src/app
@@ -8,3 +8,19 @@ services:
       - 8000:8000
     image: app:robox
     command: python manage.py runserver 0.0.0.0:8000
+
+  db:
+    image: postgres
+    container_name: robox_db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./backend/data/db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres"]
+      interval: 1m30s
+      timeout: 30s
+      retries: 5
+      start_period: 30s

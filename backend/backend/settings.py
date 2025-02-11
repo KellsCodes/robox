@@ -87,17 +87,27 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #     }
 # }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.getenv("DB_ENGINE"),
+#         'NAME': os.getenv("DB_NAME"),
+#         'USER': os.getenv("DB_USER"),
+#         'PASSWORD': os.getenv("DB_PASSWORD"),
+#         'HOST': os.getenv("DB_HOST"),
+#         'PORT': os.getenv("DB_PORT"),
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv("DB_ENGINE"),
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': os.getenv("DB_HOST"),
-        'PORT': os.getenv("DB_PORT"),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
+        'ENGINE': os.getenv("POSTGRES_DB_ENGINE"),
+        'NAME': os.getenv("POSTGRES_DB_NAME"),
+        'USER': os.getenv("POSTGRES_DB_USER"),
+        'PASSWORD': os.getenv("POSTGRES_DB_PASSWORD"),
+        'HOST': os.getenv("POSTGRES_DB_HOST"),
+        'PORT': int(os.getenv("POSTGRES_DB_PORT")),
     }
 }
 
