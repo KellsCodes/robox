@@ -214,3 +214,6 @@ frontend/.turbo/
 
 # Ignore build artifacts
 frontend/out/
+
+# postgres db
+backend/*data

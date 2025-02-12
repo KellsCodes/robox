@@ -10,10 +10,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
-import os
-from dotenv import load_dotenv, dotenv_values
+from dotenv import load_dotenv
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -100,14 +100,16 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 #         }
 #     }
 # }
+
+# print("db user", os.getenv("POSTGRES_DB_USER"))
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv("POSTGRES_DB_ENGINE"),
+        'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.getenv("POSTGRES_DB_NAME"),
-        'USER': os.getenv("POSTGRES_DB_USER"),
-        'PASSWORD': os.getenv("POSTGRES_DB_PASSWORD"),
-        'HOST': os.getenv("POSTGRES_DB_HOST"),
-        'PORT': int(os.getenv("POSTGRES_DB_PORT")),
+        'USER': os.getenv("POSTGRES_DB_USER", 'postgres'),
+        'PASSWORD': os.getenv("POSTGRES_DB_PASSWORD", 'postgres'),
+        'HOST': os.getenv("POSTGRES_DB_HOST", "db"),
+        'PORT': os.getenv("POSTGRES_DB_PORT", "5432"),
     }
 }
 
