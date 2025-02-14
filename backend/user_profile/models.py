@@ -10,7 +10,7 @@ class UserProfileModel(models.Model):
     last_name = models.CharField(max_length=255)
     user = models.OneToOneField(
         UserAccount, on_delete=models.CASCADE, related_name="profile")
-    display_name = models.CharField(max_length=150)
+    display_name = models.CharField(max_length=150, null=True)
     profile_img = models.ImageField(
         upload_to="profile_images/", max_length=255, blank=True, null=True)
     country = models.CharField(max_length=255, blank=True, null=True)

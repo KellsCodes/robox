@@ -4,9 +4,13 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /usr/src/app
 
+# Create a non-root user and switch to it
+RUN useradd -m appuser
+USER appuser
+
 COPY requirements.txt .
 
-RUN pip3 install -r requirements.txt
+RUN pip3 install --no-cache-dir -r requirements.txt
 
 COPY . .
 
