@@ -6,4 +6,12 @@ class SettingsSerializer(serializers.ModelSerializer):
     """Settings serializer"""
     class Meta:
         model = UserAppSettings
-        fields = ["id", "news_update", "economic_data", "trade_outcome"]
+        fields = ["id", "new_updates", "economic_data", "trade_outcome"]
+
+    def validate(self, data):
+        """Custom validation for boolean fields"""
+        for field, value in data.items():
+            if value not in [True, False, 1, 0]:
+                raise serializers.ValidationError(
+                    {field: f"{field} must be either true or false."})
+        return data

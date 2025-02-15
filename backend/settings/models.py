@@ -6,7 +6,7 @@ from users.models import UserAccount
 
 class UserAppSettings(models.Model):
     """app preference settings"""
-    news_update = models.BooleanField(default=True)
+    new_updates = models.BooleanField(default=True)
     economic_data = models.BooleanField(default=True)
     trade_outcome = models.BooleanField(default=True)
     user = models.OneToOneField(

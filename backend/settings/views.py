@@ -21,3 +21,14 @@ class UserSettingsView(APIView):
             return Response({"code": 1, "data": serializer.data}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"error": str(e), "code": 3}, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request):
+        try:
+            settings = get_object_or_404(UserAppSettings, user=request.user)
+            serializer = SettingsSerializer(
+                settings, data=request.data, partial=True)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response({"code": 1, "data": serializer.data}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": str(e), "code": 3}, status=status.HTTP_400_BAD_REQUEST)
