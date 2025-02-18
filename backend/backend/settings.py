@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'djoser',
     'users',
     'user_profile',
-    'settings'
+    'settings',
+    'trades'
 ]
 
 MIDDLEWARE = [
