@@ -22,10 +22,12 @@ class Trade(models.Model):
     trade_entry_description = models.CharField(
         max_length=255, blank=True, null=True)
     entry_price = models.DecimalField(
-        max_digits=10, decimal_places=4, blank=False, null=False)
+        max_digits=10, decimal_places=5, blank=False, null=False)
     stoploss_price = models.DecimalField(
-        max_digits=10, decimal_places=4, blank=False, null=False)
+        max_digits=10, decimal_places=5, blank=False, null=False)
     entry_type = models.CharField(max_length=100, blank=False, null=False)
+    order_type = models.CharField(
+        max_length=100, blank=False, null=False, default="market execution")
     status = models.CharField(max_length=100, blank=False, null=False)
     outcome = models.CharField(max_length=100, blank=False, null=False)
     manual_exit_reason = models.CharField(
@@ -45,7 +47,7 @@ class ProfitTarget(models.Model):
     trade = models.ForeignKey(
         Trade, on_delete=models.CASCADE, related_name="profit_targets"
     )
-    target = models.DecimalField(max_digits=10, decimal_places=4)
+    target = models.DecimalField(max_digits=10, decimal_places=5)
 
     def __str__(self):
         return f"Profit Target {self.target} for Trade {self.trade.id}"
