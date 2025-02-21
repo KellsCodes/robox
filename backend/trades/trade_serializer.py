@@ -23,7 +23,7 @@ class TradeSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         """Create trade and it's profit targets"""
         profit_targets_data = validated_data.pop("profit_targets", [])
-        trade = Trade.objects.create(validated_data)
+        trade = Trade.objects.create(**validated_data)
 
         # Create related profit targets
         for target_data in profit_targets_data:
