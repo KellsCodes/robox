@@ -21,3 +21,5 @@ class TradeViewSet(ModelViewSet):
     def perform_create(self, serializer):
         """Ensure the logged-in user is the owner of the trade"""
         serializer.save(user=self.request.user)
+
+
