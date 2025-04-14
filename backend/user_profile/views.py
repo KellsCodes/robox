@@ -5,6 +5,14 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from .profile_serializer import ProfileSerializer
 from .models import UserProfileModel
+
+# Create your views here.
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.exceptions import TokenError
+from rest_framework_simplejwt.tokens import RefreshToken
+
+from django.core.exceptions import ObjectDoesNotExist
+
 # Create your views here.
 
 
@@ -48,3 +56,17 @@ class UserProfileView(APIView):
 
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LogoutView(APIView):
+    permission_classes = (AllowAny, )
+    authentication_classes = ()
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({"code": 1, "message": "Logout successful"}, status=status.HTTP_200_OK)
+        except (ObjectDoesNotExist, TokenError):
+            return Response({"code": 4, "message": "Logout failed."}, status=status.HTTP_400_BAD_REQUEST)

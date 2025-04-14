@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework_simplejwt.token_blacklist',
     'rest_framework',
     'djoser',
     'django_filters',
@@ -169,7 +170,8 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('JWT',),
     'ACCESS_TOKEN_LIFETIME': timedelta(days=7),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=60)
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=60),
+    'BLACKLIST_AFTER_ROTATION': True,
 }
 
 # For sending emails
